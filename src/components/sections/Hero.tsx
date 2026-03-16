@@ -1,16 +1,63 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Terminal, Cloud, Database, Server, ChevronDown, Download, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
+  const prefix = "Hi, I'm ";
+  const name = "Kusukuntla Vyshnavi";
+  const headline = "Aspiring DevOps & Cloud Specialist";
+  
+  const prefixCount = useMotionValue(0);
+  const nameCount = useMotionValue(0);
+  const headlineCount = useMotionValue(0);
+  
+  const roundedPrefix = useTransform(prefixCount, (latest) => Math.round(latest));
+  const roundedName = useTransform(nameCount, (latest) => Math.round(latest));
+  const roundedHeadline = useTransform(headlineCount, (latest) => Math.round(latest));
+  
+  const displayPrefix = useTransform(roundedPrefix, (latest) => prefix.slice(0, latest));
+  const displayName = useTransform(roundedName, (latest) => name.slice(0, latest));
+  const displayHeadline = useTransform(roundedHeadline, (latest) => headline.slice(0, latest));
+
+  const [isPrefixDone, setIsPrefixDone] = useState(false);
+  const [isNameDone, setIsNameDone] = useState(false);
+
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-  }, []);
+    
+    const sequence = async () => {
+      // Type prefix
+      await animate(prefixCount, prefix.length, {
+        type: "tween",
+        duration: 1.0,
+        ease: "easeInOut",
+        delay: 0.5,
+      });
+      setIsPrefixDone(true);
+
+      // Type name
+      await animate(nameCount, name.length, {
+        type: "tween",
+        duration: 1.8,
+        ease: "easeInOut",
+      });
+      setIsNameDone(true);
+      
+      // Type headline
+      await animate(headlineCount, headline.length, {
+        type: "tween",
+        duration: 3,
+        ease: "easeInOut",
+        delay: 0.2,
+      });
+    };
+
+    sequence();
+  }, [prefixCount, nameCount, headlineCount, prefix.length, name.length, headline.length]);
 
   if (!mounted) return <div className="min-h-screen bg-background" />;
 
@@ -71,18 +118,39 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-purple-600"
+            className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 flex flex-col items-center md:items-start gap-3"
           >
-            Kusukuntla Vyshnavi
+            <motion.span className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground font-medium">
+              {displayPrefix}
+            </motion.span>
+            <div className="flex items-center gap-x-3">
+              <motion.span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+                {displayName}
+              </motion.span>
+              {!isNameDone && (
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                  className="inline-block w-[4px] h-[1em] bg-primary"
+                />
+              )}
+            </div>
           </motion.h1>
 
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6"
+            className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6 flex items-center justify-center md:justify-start"
           >
-            Aspiring DevOps & Cloud Specialist
+            <motion.span>{displayHeadline}</motion.span>
+            {isNameDone && (
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                className="inline-block w-[3px] h-[1em] bg-primary/60 ml-1"
+              />
+            )}
           </motion.h2>
 
           <motion.p 

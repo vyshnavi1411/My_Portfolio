@@ -15,10 +15,10 @@ export function About() {
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div variants={itemVariants} className="space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
-            Hi, I’m <strong className="text-foreground">Vyshnavi</strong>, a B.Tech student at Lovely Professional University with a strong interest in <strong className="text-primary">DevOps, cloud computing, and backend technologies</strong>.
+            Hi, I’m Vyshnavi, a Cloud & DevOps enthusiast passionate about building scalable infrastructure and reliable systems.
           </p>
           <p>
-            I enjoy working with tools like AWS, Docker, Kubernetes, and CI/CD pipelines to build scalable and reliable systems. I’m passionate about automation, infrastructure management, and continuously learning modern cloud technologies. I enjoy solving real-world infrastructure challenges and building automated deployment pipelines that improve system reliability and efficiency.
+            I work with technologies like AWS, Docker, Kubernetes, and CI/CD pipelines to automate deployments and streamline cloud operations. I enjoy solving infrastructure challenges and designing efficient deployment pipelines that improve system performance and reliability.
           </p>
         </motion.div>
 
