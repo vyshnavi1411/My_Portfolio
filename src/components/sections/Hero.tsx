@@ -13,15 +13,12 @@ export function Hero() {
   
   const prefixCount = useMotionValue(0);
   const nameCount = useMotionValue(0);
-  const headlineCount = useMotionValue(0);
   
   const roundedPrefix = useTransform(prefixCount, (latest) => Math.round(latest));
   const roundedName = useTransform(nameCount, (latest) => Math.round(latest));
-  const roundedHeadline = useTransform(headlineCount, (latest) => Math.round(latest));
   
   const displayPrefix = useTransform(roundedPrefix, (latest) => prefix.slice(0, latest));
   const displayName = useTransform(roundedName, (latest) => name.slice(0, latest));
-  const displayHeadline = useTransform(roundedHeadline, (latest) => headline.slice(0, latest));
 
   const [isPrefixDone, setIsPrefixDone] = useState(false);
   const [isNameDone, setIsNameDone] = useState(false);
@@ -46,18 +43,10 @@ export function Hero() {
         ease: "easeInOut",
       });
       setIsNameDone(true);
-      
-      // Type headline
-      await animate(headlineCount, headline.length, {
-        type: "tween",
-        duration: 3,
-        ease: "easeInOut",
-        delay: 0.2,
-      });
     };
 
     sequence();
-  }, [prefixCount, nameCount, headlineCount, prefix.length, name.length, headline.length]);
+  }, [prefixCount, nameCount, prefix.length, name.length]);
 
   if (!mounted) return <div className="min-h-screen bg-background" />;
 
@@ -137,21 +126,9 @@ export function Hero() {
             </div>
           </motion.h1>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6 flex items-center justify-center md:justify-start"
-          >
-            <motion.span>{displayHeadline}</motion.span>
-            {isNameDone && (
-              <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-                className="inline-block w-[3px] h-[1em] bg-primary/60 ml-1"
-              />
-            )}
-          </motion.h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6 flex items-center justify-center md:justify-start">
+            {headline}
+          </h2>
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +136,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="max-w-2xl text-lg text-muted-foreground/80 mb-10"
           >
-            Actively seeking opportunities to build resilient infrastructure and automate scalable solutions.
+            Passionate about Bridging the gap between development and operations through automation, cloud-native solutions, and robust CI/CD pipelines.
           </motion.p>
 
           <motion.div 
@@ -181,12 +158,6 @@ export function Hero() {
             >
               <Download size={18} />
               Download Resume
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-md text-foreground hover:text-primary transition-colors font-medium underline-offset-4 hover:underline"
-            >
-              Contact Me <ExternalLink size={16} />
             </a>
           </motion.div>
         </div>

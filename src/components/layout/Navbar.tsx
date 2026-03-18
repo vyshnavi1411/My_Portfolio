@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, TerminalSquare } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ThemeToggle";
 
@@ -11,7 +11,6 @@ const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Education & Certificates", href: "#education" },
   { name: "Training & Activity", href: "#experience" },
-  { name: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
@@ -38,10 +37,15 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <TerminalSquare className="w-8 h-8 text-primary" />
-            <span className="font-bold text-xl tracking-tight">Vyshnavi</span>
-          </div>
+          <a
+            href="https://github.com/vyshnavi1411"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 group hover:text-primary transition-colors"
+          >
+            <Github className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
+            <span className="font-bold text-xl tracking-tight">GitHub</span>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">

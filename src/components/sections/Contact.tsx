@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionWrapper } from "../layout/SectionWrapper";
-import { Mail, Send, Github, Linkedin, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Mail, Send, Github, Linkedin, MapPin, CheckCircle2, AlertCircle, Loader2, Phone } from "lucide-react";
 import { useState } from "react";
 
 export function Contact() {
@@ -78,9 +78,7 @@ export function Contact() {
         >
           <motion.div variants={item}>
             <h3 className="text-3xl font-bold mb-4">Let&apos;s talk about cloud, infrastructure, and everything DevOps.</h3>
-            <p className="text-muted-foreground text-lg">
-              I&apos;m currently open to new opportunities, collaborations, or just a chat about technology. Drop me a message!
-            </p>
+
           </motion.div>
 
           <motion.div variants={item} className="space-y-6">
@@ -100,30 +98,36 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Location</p>
-                <p className="text-foreground font-medium">India</p>
+                <p className="text-foreground font-medium">Mancherial, Telangana, India</p>
               </div>
             </div>
 
-            <div className="flex gap-4 pt-4">
-               <a
-                href="https://github.com/vyshnavi1411"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all"
-               >
-                <Github size={20} />
-                <span className="sr-only">GitHub</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/vyshnavikusukuntla"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all"
-               >
+            <a
+              href="https://www.linkedin.com/in/vyshnavikusukuntla"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 group w-fit"
+            >
+              <div className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
                 <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            </div>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">LinkedIn</p>
+                <p className="text-foreground font-medium group-hover:text-primary transition-colors">vyshnavikusukuntla</p>
+              </div>
+            </a>
+
+            <a href="tel:+919676023214" className="flex items-center gap-4 group w-fit">
+              <div className="w-12 h-12 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                <Phone size={20} />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Phone</p>
+                <p className="text-foreground font-medium group-hover:text-primary transition-colors">+91 96760 23214</p>
+              </div>
+            </a>
+
+
           </motion.div>
         </motion.div>
 
