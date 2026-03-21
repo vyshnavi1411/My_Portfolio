@@ -47,6 +47,22 @@ export function Experience() {
                   <p>Implemented complex resource monitoring, load balancing, and secure storage configurations.</p>
                 </div>
               </div>
+
+              {/* Training Certificate Link */}
+              <a 
+                href="https://www.cipherschools.com/certificate/preview?id=687e50387efd6d5090703e99" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-6 w-full flex flex-col items-center justify-center gap-3 py-8 rounded-xl border border-border/50 bg-card/50 hover:bg-primary/5 hover:border-primary/30 transition-all duration-300 group/cert cursor-pointer"
+              >
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover/cert:scale-110 transition-transform duration-300">
+                  <Cloud className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex items-center gap-2 text-sm font-bold text-foreground/80 group-hover/cert:text-primary transition-colors">
+                  View Verified Certificate <span className="group-hover/cert:-translate-y-1 group-hover/cert:translate-x-1 transition-transform">↗</span>
+                </div>
+              </a>
+
             </div>
           </motion.div>
         </motion.div>
@@ -78,9 +94,24 @@ export function Experience() {
                   <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <span className="text-primary font-bold text-sm">02</span>
                   </div>
-                  <div>
+                  <div className="w-full">
                     <h5 className="font-bold text-foreground mb-1">Community Development Project (CDP)</h5>
                     <p className="text-sm text-muted-foreground leading-relaxed">Contributed to local community welfare initiatives, focusing on sustainable development and social impact.</p>
+                    
+                    <div className="mt-4 rounded-xl overflow-hidden border border-border/50 bg-muted/20 relative group/cdp">
+                      <img 
+                        src="/images/CDP.jpg" 
+                        alt="Community Development Project" 
+                        className="w-full h-auto object-cover max-h-48 transition-transform duration-500 group-hover/cdp:scale-105"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement?.classList.add('p-4', 'flex', 'items-center', 'justify-center');
+                          if (e.currentTarget.parentElement) {
+                            e.currentTarget.parentElement.innerHTML = '<span class="text-xs font-mono text-muted-foreground/50">Save image as public/cdp.jpg to display here</span>';
+                          }
+                        }}
+                      />
+                    </div>
                   </div>
                 </li>
               </ul>
